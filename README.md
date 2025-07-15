@@ -24,7 +24,6 @@ This project implements a 32-bit **RISC-V single-cycle processor** (RV32I ISA) u
 | **Basys 3 FPGA Board**   | Target hardware (Artix-7)              |
 | **BRAM Generator**       | Instruction memory (program.mem)       |
 | **Xilinx ILA**           | Real-time debugging and signal probing |
-| **GTKWAVE** *(optional)* | Waveform viewing (simulation)          |
 
 ---
 
@@ -102,11 +101,15 @@ jal  x0, -4           ; Loop to previous instruction
 
 ### 💻 FPGA Deployment (Basys 3)
 
-1. Synthesize and implement `top.v`.
-2. Connect the `program.mem` to BRAM using Vivado's BRAM Generator.
-3. Assign the reset to a **Basys 3 push button (e.g., btnC)**.
-4. Connect ILA to signals like `PC`, `ALU result`, and `RegFile outputs`.
-5. Generate bitstream and program the FPGA.
+1. Initialize and Configure BRAM Generator (Block RAM Generator) from IP Catalog of Vivado tool.
+2. Convert the `program.mem` to `program.coe` and connect it to BRAM using Vivado's BRAM Generator.
+3. Now instantiate BRAM module ` blk_mem_gen_0` in `top.v`.
+4. Assign the reset to a **Basys 3 switch** using `Basys3_Master.xdc`.
+5. Initialize and Configure ILA(Integrated Logic Analyzer) from IP Catalog of Viviado tool.
+6. Now instantiate ILA module `ila_0` in top module
+7. Connect ILA to signals like `PC`, `ALU result`, and `RegFile outputs`.
+8. Synthesize and implement `top.v`.
+9. Generate bitstream and program the FPGA.
 
 *(Insert ila\_waveform.png here)*
 
@@ -116,7 +119,6 @@ jal  x0, -4           ; Loop to previous instruction
 
 **Yaswanth Sai Kotyada**
 B.Tech in Electrical Engineering, NIT Rourkela
-Samsung–IISc ISWDP Grade 2 Fellow | GATE 2026 Aspirant
 🔗 [LinkedIn](#) • 🔗 [GitHub](#) • 📧 [yaswanth@email.com](mailto:yaswanth@email.com)
 
 ---
@@ -126,9 +128,3 @@ Samsung–IISc ISWDP Grade 2 Fellow | GATE 2026 Aspirant
 This project is open-source and available under the MIT License.
 
 ---
-
-## 📌 Related Projects
-
-* 🔁 [RISC-V 5-Stage Pipelined Processor (in progress)](https://github.com/yourusername/riscv-5stage)
-* 🔁 [Asynchronous FIFO](https://github.com/yourusername/async-fifo)
-* 💡 [Verilog Design Library](https://github.com/yourusername/verilog-design-library)
