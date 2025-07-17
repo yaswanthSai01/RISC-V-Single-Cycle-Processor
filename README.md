@@ -43,39 +43,6 @@ The processor implements the following core blocks:
 
 ---
 
-## 📂 File Structure
-
-```
-riscv-single-cycle-processor/
-│
-├── src/                  # RTL Modules
-│   ├── top.v
-│   ├── alu.v
-│   ├── regfile.v
-│   ├── control_unit.v
-│   ├── datapath.v
-│   ├── pc.v
-│   ├── imm_gen.v
-│   └── branch_comp.v
-│
-├── tb/                   # Testbench
-│   ├── tb_top.v
-│   └── program.mem       # Instruction memory init
-│
-├── bram_init/            # For Vivado BRAM init
-│   └── program.mem
-│
-├── vivado_project/       # Optional Vivado project
-│
-├── images/               # Diagrams and screenshots
-│   ├── block_diagram.png
-│   └── ila_waveform.png
-│
-└── README.md             # You're here!
-```
-
----
-
 ## 🧪 Test Program Example
 
 The following test instructions (in `program.mem`) were used to verify functionality:
