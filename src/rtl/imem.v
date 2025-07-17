@@ -16,7 +16,6 @@
 // Author: Kotyada Yaswanth Sai
 // About: EE undergraduate at NIT Rourkela, interested in Digital Design
 //        and Computer Architecture.
-// Date: July 17, 2025
 //
 //////////////////////////////////////////////////////////////////////////////
 
