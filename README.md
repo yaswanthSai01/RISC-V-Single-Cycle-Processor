@@ -1,60 +1,47 @@
-# RISC-V Single-Cycle Processor on FPGA
+# RISC-V Single-Cycle Core on FPGA
 
-This project implements a 32-bit **RISC-V single-cycle processor** (RV32I ISA) using **Verilog HDL**, simulated using **Xilinx Vivado**, and deployed on a **Basys 3 FPGA**. The processor uses **Block RAM (BRAM)** for instruction memory and is debugged using the **Integrated Logic Analyzer (ILA)**. A reset functionality is provided via an external switch on the FPGA board.
+This repository contains a Verilog HDL implementation of a **32-bit RISC-V Single-Cycle Processor** (RV32I), designed for the **Basys 3 FPGA**. It uses **Block RAM (BRAM)** for instruction memory and includes **Integrated Logic Analyzer (ILA)** integration for real-time debugging.
 
----
+## 🔧 Features
 
-## 📌 Features
-
-* ✅ Supports the full RV32I base instruction set (arithmetic, logic, load/store, branches, jump)
-* ✅ **Single-cycle architecture**: all instructions execute in a single clock cycle
-* ✅ **Modular design** with separate ALU, Control Unit, Register File, PC, and Datapath
-* ✅ **BRAM** used for instruction memory (initialized with `.mem`)
-* ✅ **ILA Debugging** to monitor internal signals such as PC, ALU result, RegFile output
-* ✅ Reset via external **Basys 3 button** mapped as synchronous reset
-
----
+- Implements **RV32I base instruction set** (arithmetic, logic, load/store, branches, jump)
+- **Single-cycle execution** for all instructions
+- Modular design: ALU, Control Unit, Register File, PC, etc.
+- **Instruction memory** via BRAM initialized with `program.mem`
+- **ILA debugging** for PC, ALU result, register outputs
+- Synchronous **reset via button** on Basys 3
 
 ## 🛠 Tools & Hardware
 
-| Tool/Component           | Description                            |
-| ------------------------ | -------------------------------------- |
-| **Verilog HDL**          | RTL design language                    |
-| **Xilinx Vivado**        | Synthesis, Simulation & FPGA flow      |
-| **Basys 3 FPGA Board**   | Target hardware (Artix-7)              |
-| **BRAM Generator**       | Instruction memory (program.mem)       |
-| **Xilinx ILA**           | Real-time debugging and signal probing |
+- **Language:** Verilog HDL  
+- **Toolchain:** Xilinx Vivado  
+- **Board:** Basys 3 (Artix-7)  
+- **Memory:** BRAM (Block RAM Generator IP)  
+- **Debug:** Integrated Logic Analyzer (ILA)
 
----
+## 🧠 Architecture
 
-## 🧠 Architecture Overview
+Key Modules:
+- Program Counter (PC)
+- Instruction Memory (BRAM)
+- Instruction Decoder & Control Unit
+- ALU and Register File
+- Immediate Generator
+- Branch Comparator
 
-The processor implements the following core blocks:
+*(Insert architecture diagram if available)*
 
-* **Program Counter (PC)** with synchronous reset
-* **Instruction Memory** using BRAM
-* **Instruction Decoder + Control Unit**
-* **ALU** for arithmetic and logic ops
-* **Register File** (x0–x31)
-* **Immediate Generator**
-* **Branch Comparator** for conditional jumps
+## 🧪 Test Program
 
-*(Insert block\_diagram.png here)*
-
----
-
-## 🧪 Test Program Example
-
-The following test instructions (in `program.mem`) were used to verify functionality:
+Example instructions used for testing (from `program.mem`):
 
 ```assembly
-addi x1, x0, 5        ; x1 = 5
-addi x2, x0, 10       ; x2 = 10
-add  x3, x1, x2       ; x3 = x1 + x2 = 15
-sw   x3, 0(x0)        ; Store x3 to address 0
-beq  x1, x2, skip     ; Should not branch
-jal  x0, -4           ; Loop to previous instruction
-```
+addi x1, x0, 5        // x1 = 5
+addi x2, x0, 10       // x2 = 10
+add  x3, x1, x2       // x3 = 15
+sw   x3, 0(x0)        // Store to address 0
+beq  x1, x2, skip     // No branch
+jal  x0, -4           // Loop
 
 ---
 
@@ -86,12 +73,5 @@ jal  x0, -4           ; Loop to previous instruction
 
 **Yaswanth Sai Kotyada**
 B.Tech in Electrical Engineering, NIT Rourkela
-🔗 [LinkedIn](#) • 🔗 [GitHub](#) • 📧 [yaswanth@email.com](mailto:yaswanth@email.com)
-
----
-
-## 📎 License
-
-This project is open-source and available under the MIT License.
 
 ---
