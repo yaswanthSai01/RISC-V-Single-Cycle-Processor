@@ -42,7 +42,7 @@ add  x3, x1, x2       // x3 = 15
 sw   x3, 0(x0)        // Store to address 0
 beq  x1, x2, skip     // No branch
 jal  x0, -4           // Loop
-
+```
 ---
 
 ## 🚀 Running the Design
